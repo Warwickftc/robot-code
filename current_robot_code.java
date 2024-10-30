@@ -10,23 +10,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "CodeTest")
 public class CodeTest extends LinearOpMode {
-
-    // Experimental code, non-functional
-    private static void rampMotor(DcMotor motor, double motorPower, double rampSpeed) {
-
-        if (motorPower < 0.2 && motorPower > -0.2) {
-            motor.setPower(0);
-        }
-        
-        if ((motorPower > motor.getPower()) && (motorPower - motor.getPower() >= rampSpeed)) {
-            motor.setPower(motor.getPower() + rampSpeed); 
-        }
-
-        if ((motorPower < motor.getPower()) && (motor.getPower() - motorPower >= rampSpeed)) {
-            motor.setPower(motor.getPower() - rampSpeed);
-        }
-
-    }
     
     // Allows less abrupt starts and stops
     private static void logMotor (DcMotor motor, double motorPower) {
