@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "CodeTest")
-public class CodeTest extends LinearOpMode {
+@TeleOp(name = "CurrentRobotCode")
+public class CurrentRobotCode extends LinearOpMode {
     
     // Allows less abrupt starts and stops
     private static void logMotor (DcMotor motor, double motorPower) {
