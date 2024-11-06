@@ -14,6 +14,9 @@ public class CurrentRobotCode extends LinearOpMode {
     // Allows less abrupt starts and stops
     private static void logMotor (DcMotor motor, double motorPower) {
 
+        // Doesn't move?
+        // If it slows down it just stops
+        // Acceleration?
         if (motorPower < 0.2 && motorPower > -0.2) { 
             motor.setPower(0); }
         
@@ -27,7 +30,6 @@ public class CurrentRobotCode extends LinearOpMode {
 
     // Declares Motors & Servos
     private DcMotor leftFront, rightFront, leftRear, rightRear, armElevation, armRotation, clawExtension;
-    //private DigitalChannel Ls_ArmRotation, Ls_ArmElevation, Ls_ArmExtension;
     private Servo Servo_R, Servo_C;
 
     private boolean lock = false;
