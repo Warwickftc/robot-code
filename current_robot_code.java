@@ -17,10 +17,7 @@ public class CurrentRobotCode extends LinearOpMode {
         // Doesn't move?
         // If it slows down it just stops
         // Acceleration?
-        if (motorPower < 0.2 && motorPower > -0.2) { 
-            motor.setPower(0); }
-        
-        else if (motorPower > 0) {
+        if (motorPower > 0) {
             motor.setPower(motorPower*motorPower); }
             
         else {
@@ -35,6 +32,7 @@ public class CurrentRobotCode extends LinearOpMode {
     private boolean lock = false;
     private double rampSpeed = 0.2;
     private double speed;
+    // Maybe 1 open 0 closed?
     private int clawState = 1;
 
     @Override
@@ -46,13 +44,8 @@ public class CurrentRobotCode extends LinearOpMode {
         rightFront = hardwareMap.get(DcMotor.class, "RightFront");
         rightRear = hardwareMap.get(DcMotor.class, "RightRear");
         leftRear = hardwareMap.get(DcMotor.class, "LeftRear");
-        
-        //Ls_ArmRotation = hardwareMap.get(DigitalChannel.class, "Ls_ArmRotation");
-        //Ls_ArmElevation = hardwareMap.get(DigitalChannel.class, "Ls_ArmElevation");
-        //Ls_ArmExtension = hardwareMap.get(DigitalChannel.class, "Ls_ArmExtension");
-        //armRotation = hardwareMap.get(DcMotor.class, "ArmRotation");
+
         armElevation = hardwareMap.get(DcMotor.class, "ArmElevation");
-        //clawExtension = hardwareMap.get(DcMotor.class, "ClawExtension");*/
         Servo_R = hardwareMap.get(Servo.class, "Servo_R"); 
         Servo_C = hardwareMap.get(Servo.class, "Servo_C");
         
@@ -64,13 +57,17 @@ public class CurrentRobotCode extends LinearOpMode {
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
+        // The encoder is probably the black motor of the motor at the back
+        // that records how much it spins and stuff
         armElevation.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
         waitForStart();
 
+        // This is the main part of the program
         while (opModeIsActive()) {
 
+            // Deriving the power from the left and right paddles on the controller
             double x = gamepad1.left_stick_x;
             double y = -gamepad1.left_stick_y;
             double rotation = gamepad1.right_stick_x;
@@ -80,7 +77,6 @@ public class CurrentRobotCode extends LinearOpMode {
             double rightFrontPower = -x + y - rotation;
 
             // Sets three different speed options
-
             if (gamepad1.left_bumper)
 
                 speed = 0.4;
@@ -93,6 +89,7 @@ public class CurrentRobotCode extends LinearOpMode {
                 
                 speed = 0.6;
             
+            // Speed multiplier
             leftRearPower *= speed;
             rightRearPower *= speed;
             leftFrontPower *= speed;
