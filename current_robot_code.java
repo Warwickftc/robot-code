@@ -68,9 +68,9 @@ public class CurrentRobotCode extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Deriving the power from the left and right paddles on the controller
-            double x = gamepad1.left_stick_x;
-            double y = -gamepad1.left_stick_y;
-            double rotation = gamepad1.right_stick_x;
+            double x = -gamepad1.left_stick_x;
+            double y = gamepad1.left_stick_y;
+            double rotation = -gamepad1.right_stick_x;
             double leftRearPower = -x + y + rotation;
             double rightRearPower = -x - y + rotation;
             double leftFrontPower = x + y + rotation;
